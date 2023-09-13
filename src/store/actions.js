@@ -9,3 +9,21 @@ export const searchMeals = ({ commit }, keyword) => {
       // Handle errors here
     });
 };
+export const searchMealsByLetter = ({ commit }, letter) => {
+  return axiosClient.get(`search.php?f=${letter}`)
+    .then(({ data }) => {
+      commit('setMealsByLetter', data.meals);
+    })
+    .catch((error) => {
+      // Handle errors here
+    });
+};
+export const searchMealsByIngredient = ({ commit }, ingredient) => {
+  return axiosClient.get(`filter.php?i=${ingredient}`)
+    .then(({ data }) => {
+      commit('setMealsByIngredient', data.meals);
+    })
+    .catch((error) => {
+      // Handle errors here
+    });
+};
